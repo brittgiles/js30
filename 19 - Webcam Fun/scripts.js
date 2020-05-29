@@ -35,7 +35,7 @@ function paintToCanvas() {
 }
 
 function takePhoto() {
-  // play the sound but the sound file doesn't work anymore!!
+  // play the sound but the sound file doesn't work anymore!! so leaving it commented out
   // snap.currentTime = 0;
   // snap.play();
 
