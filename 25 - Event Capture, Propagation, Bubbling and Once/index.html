@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after { 
+    box-sizing: inherit; 
+  }
+
+  div {
+    width: 100%;
+    padding: 100px;
+  }
+
+  .one {
+    background: thistle;
+  }
+
+  .two {
+    background: mistyrose;
+  }
+
+  .three {
+    background: coral;
+  }
+</style>
+
+<button></button>
+<script>
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+
+  // bubbling: the browser will capture what you click on but it will also capture the things around it, it will ripple up all the way up to the top of the document
+
+  function logText(e) {
+    console.log(this.classList.value);
+    e.stopPropagation(); // this stops it from bubbling up to the parents and will capture just the value that you clicked on
+    // console.log(this);
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,
+    once: true // keeps you from running multiple events
+  }));
+
+  // use case example for using once, on a button, you can add it to keep people from clicking it multiple times
+
+  button.addEventListener('click', () => {
+    console.log('click!!');
+  }, {
+    once: true
+  })
+</script>
+</body>
+</html>
